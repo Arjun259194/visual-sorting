@@ -1,6 +1,5 @@
-import BubbleSort from "./components/BubbleSort";
-import QuickSort from "./components/QuickSort";
-import SelectionSort from "./components/SelectionSort";
+import Sort from "./components/Sort";
+import algo from "./utils/algo";
 
 function App() {
   return (
@@ -11,9 +10,11 @@ function App() {
             By Arjun R. Mistry
           </h2>
           <div className="flex w-full *:w-full gap-4 md:grid md:grid-cols-2 items-center justify-between">
-            <BubbleSort />
-            <QuickSort />
-            <SelectionSort />
+            {Object.entries(algo).map(([title, fn], i) => (
+              <Sort key={i} clickSort={fn}>
+                {title}
+              </Sort>
+            ))}
           </div>
         </section>
       </main>

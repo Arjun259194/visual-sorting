@@ -1,7 +1,8 @@
 import { ReactNode, useState } from "react";
 import Button from "./UI/Button";
-import { getArr, shuffleArray } from "../utils/function";
 import { SetStateFn, State } from "../type";
+import { getArr, shuffleArray } from "./../utils/function";
+
 
 interface Props {
   clickSort: (setArr: SetStateFn, arr: State) => void;

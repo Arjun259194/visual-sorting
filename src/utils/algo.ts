@@ -1,7 +1,5 @@
-import { SetStateFn, State } from "../type";
 import { sleep } from "./function";
-
-type AlgoMap = Record<string, (arg1: SetStateFn, arg2: State) => Promise<void>>;
+import { AlgoMap } from "../type";
 
 export default {
   "Bubble Sort": async (set, arr) => {
@@ -12,7 +10,7 @@ export default {
           arr[i] = arr[j];
           arr[j] = temp;
           set([...arr]);
-          await sleep(100);
+          await sleep();
         }
       }
     }
@@ -30,7 +28,7 @@ export default {
         arr[i] = arr[minIndex];
         arr[minIndex] = temp;
         set([...arr]);
-        await sleep(100);
+        await sleep();
       }
     }
   },
@@ -66,9 +64,22 @@ export default {
       arr[i] = arr[j];
       arr[j] = temp;
       set([...arr]);
-      await sleep(100);
+      await sleep();
     }
 
     quickSort(arr, 0, arr.length - 1);
+  },
+  "Insertion Sort": async (set, arr) => {
+    for (let i = 1; i < arr.length; i++) {
+      const key = arr[i];
+      let j = i - 1;
+      while (j >= 0 && arr[j] > key) {
+        arr[j + 1] = arr[j];
+        j = j - 1;
+      }
+      arr[j + 1] = key;
+      set([...arr]);
+      await sleep();
+    }
   },
 } satisfies AlgoMap;

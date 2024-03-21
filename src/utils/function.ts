@@ -6,7 +6,7 @@ export function getArr() {
   return a
 }
 
-export const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+export const sleep = (ms: number = 50) => new Promise(resolve => setTimeout(resolve, ms));
 
 export function shuffleArray(inputArr: Array<number>) {
   const array = [...inputArr]

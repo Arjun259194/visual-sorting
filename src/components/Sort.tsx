@@ -12,11 +12,17 @@ interface Props {
 const Sort: React.FC<Props> = ({ clickSort, children }) => {
   const [arr, setArr] = useState(shuffleArray(getArr()));
 
+  function mix() {
+    setArr((prev) => {
+      return shuffleArray(prev)
+    })
+  }
+
   return (
-    <section className="flex flex-col items-center space-y-5">
+    <section className="rounded-md p-1 flex flex-col items-center space-y-5">
       <h1 className="text-3xl capitalize font-semibold">{children}</h1>
       <div
-        className={`w-full mx-auto gap-px grid grid-cols-10 grid-flow-col grid-rows-10`}
+        className={`w-full rounded-lg overflow-hidden mx-auto gap-0.5 grid grid-cols-10 grid-flow-col grid-rows-10`}
       >
         {arr.map((i) => {
           return (
@@ -28,14 +34,21 @@ const Sort: React.FC<Props> = ({ clickSort, children }) => {
           );
         })}
       </div>
-      <Button
-        onClick={async () => {
-          clickSort(setArr, arr);
-        }}
-        className="p-2 bg-green-400 capitalize"
-      >
-        sort
-      </Button>
+      <div className="w-full space-x-5 flex px-5 py-2">
+        <Button
+          onClick={async () => {
+            clickSort(setArr, arr);
+          }}
+        >
+          sort
+        </Button>
+        <Button
+          onClick={mix}
+          variant="secondary"
+        >
+          UnSort
+        </Button>
+      </div>
     </section>
   );
 };

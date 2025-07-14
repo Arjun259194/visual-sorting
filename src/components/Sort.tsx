@@ -29,7 +29,7 @@ const Sort: React.FC<Props> = ({ clickSort, children }) => {
             <img
               key={i}
               className="w-full rounded-sm"
-              src={`/images/${i <= 9 ? `0${i}` : i}.jpg`}
+              src={`/visual-sorting/images/${i <= 9 ? `0${i}` : i}.jpg`}
             />
           );
         })}

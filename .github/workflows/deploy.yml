@@ -3,33 +3,35 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master # or 'master' if that's your default
+      - master
 
 permissions:
-  contents: write # allow push to gh-pages branch
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repo
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: 📦 Install Node.js
+      - name: Setup Node.js & pnpm
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: "pnpm"             # enable pnpm caching
+      - name: Install pnpm
+        run: npm install -g pnpm   # install pnpm CLI
 
-      - name: 📥 Install dependencies
-        run: npm ci
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: 🛠 Build project
-        run: npm run build
+      - name: Build project
+        run: pnpm run build
 
-      - name: 🚀 Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist

@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - master  # use master instead of main
 
 permissions:
   contents: write
@@ -16,28 +16,17 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "pnpm"
 
-      # Install pnpm itself
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8   # or whatever version you want
+      - name: Install deps
+        run: npm ci
 
-      # Install dependencies from pnpm-lock.yaml
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      # Build your Vite app
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
-      # Deploy the dist/ folder to gh-pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

@@ -7,7 +7,7 @@ function App() {
       <main className="container mx-auto">
         <section className="flex p-2 flex-col items-center space-y-5">
           <h2 className="capitalize underline text-3xl">
-            By Arjun Mistry
+            By Arjun 
           </h2>
           <a href="https://portfolio-zeta-puce-58.vercel.app/"></a>
           <div className="flex w-full *:w-full gap-4 md:grid md:grid-cols-3 md:gap-10 items-center justify-between">
